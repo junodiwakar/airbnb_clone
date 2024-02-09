@@ -1,8 +1,13 @@
-Property.create!(name:"sample property",
-description:"sample description",
-headline:"sample headline",
-address_1:"sample address1",
-address_2:"sample address 2",
-city:"gurugram",
-state:"haryana",
-country:"India")
+20.times do 
+  Property.create!({
+    name: Faker::Lorem.unique.sentence(word_count: 3),
+    description: Faker::Lorem.paragraph(sentence_count: 10),
+    headline: Faker::Lorem.unique.sentence(word_count: 3),
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country,
+    price: Money.from_amount((50..100).to_a.sample,'USD'),
+  })
+end

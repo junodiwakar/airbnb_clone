@@ -1,7 +1,5 @@
 <div class="bg-white">
   <div class="mx-auto max-w-2xl px-4 py-4 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8">
-
-
     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       <% @properties.each do |property| %>
         <div class="group relative">
@@ -25,8 +23,7 @@
             </div>
             <p class="mt-0.5 text-sm text-gray-500">Hosted by Arjun</p>
             <p class="mt-0.5 text-sm text-gray-500">9-15 feb</p>
-            <p class="mt-0.5 text-sm font-light text-black"><span class="font-medium">$110</span> night</p>
-
+            <p class="mt-0.5 text-sm font-light text-black"><span class="font-medium"><%=humanized_money_with_symbol(property.price) %></span> night</p>
           </div>
         </div>
       <% end %>
