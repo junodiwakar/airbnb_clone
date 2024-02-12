@@ -3,9 +3,18 @@
     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       <% @properties.each do |property| %>
         <div class="group relative">
-          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200  group-hover:opacity-75">
-            <img src="https://thepropertytribune.com.au/wp-content/uploads/2022/12/airbnb.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+          <div class="swiper aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200">
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <% property.images.each do |image| %>
+                <%= image_tag image, class: "swiper-slide h-full w-full object-cover object-center lg:h-full lg:w-full" %>
+              <% end %>
+            </div>
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
           </div>
+
           <div class="mt-2">
             <div class="flex justify-between">
               <h3 class="text-base font-medium text-gray-700">
@@ -30,3 +39,4 @@
     </div>
   </div>
 </div>
+ 

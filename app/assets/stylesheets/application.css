@@ -16,6 +16,49 @@
 
 
 .swiper {
-  width: 600px;
-  height: 300px;
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+.swiper:hover{
+  .swiper-button-next{
+    display: block !important;
+  }
+  .swiper-button-prev{
+    display: block !important;
+  }
+}
+.swiper-button-next{
+  display: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  background-color: white !important;
+  background-image: url('assets/next.svg') ;
+  border-width: 4px;
+  border-color: white;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.swiper-button-next::after {
+  content: '' !important;
+}
+
+.swiper-button-prev{
+  display: none !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  background-color: white !important;
+  background-image: url('assets/previous.svg') ;
+  border-width: 4px;
+  border-color: white;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.swiper-button-prev::after {
+  content: '' !important;
 }
