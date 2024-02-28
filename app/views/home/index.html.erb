@@ -19,16 +19,18 @@
                 <svg xmlns="http://www.w3.org/2000/svg" 
                   viewBox="0 0 32 32" aria-hidden="true" 
                   role="presentation" focusable="false" 
-                  class="block h-6 w-6 stroke-white stroke-2"
+                  class="block h-6 w-6 stroke-white stroke-2 <%= property.wishlisted_by?(current_user)? 'fill-primary': 'fill-none' %>"
                   style="overflow: visible;"
                   data-controller="wishlist"
+                  data-user-logged-in="<%= user_signed_in? %>"
+                  data-property-id="<%= property.id %>"
+                  data-wishlist-id="<%= property.wishlists.find_by(user: current_user)&.id %>"
+                  data-user-id="<%= current_user&.id %>"
                   data-action="click->wishlist#updatewishliststatus"
-                  data-status="false"
+                  data-status="<%= property.wishlisted_by?(current_user) %>"
                   >
                   <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path>
                 </svg>
-
-
               </div>
 
             </div>
@@ -48,8 +50,8 @@
                 <%= (property.average_final_rating).round(2) %>
               </p>
             </div>
-            <p class="mt-0.5 text-sm text-gray-500">Hosted by Arjun</p>
-            <p class="mt-0.5 text-sm text-gray-500">9-15 feb</p>
+            <%# TODO: Add distance from property based on location %>
+            <p class="mt-0.5 text-sm text-gray-500"><%=property.available_dates.first%> - <%=property.available_dates.last%></p>
             <p class="mt-0.5 text-sm font-light text-black"><span class="font-medium"><%=humanized_money_with_symbol(property.price) %></span> night</p>
           </div>
         </div>
