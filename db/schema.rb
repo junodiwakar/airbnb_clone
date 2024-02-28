@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_12_121450) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_28_044643) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,6 +56,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_121450) do
     t.decimal "average_final_rating", precision: 10
   end
 
+  create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.date "checkin_date"
+    t.date "checkout_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_reservations_on_property_id"
+    t.index ["user_id", "property_id", "checkin_date", "checkout_date"], name: "idx_on_user_id_property_id_checkin_date_checkout_da_7282e2dfd7", unique: true
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
     t.integer "cleanliness_rating"
@@ -85,8 +97,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_121450) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "wishlists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_wishlists_on_property_id"
+    t.index ["user_id", "property_id"], name: "index_wishlists_on_user_id_and_property_id", unique: true
+    t.index ["user_id"], name: "index_wishlists_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reservations", "properties"
+  add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "properties"
   add_foreign_key "reviews", "users"
+  add_foreign_key "wishlists", "properties"
+  add_foreign_key "wishlists", "users"
 end
