@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_044643) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_061430) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -54,6 +54,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_044643) do
     t.string "price_currency"
     t.integer "reviews_count"
     t.decimal "average_final_rating", precision: 10
+    t.integer "guest_count", default: 0
+    t.integer "bedroom_count", default: 0
+    t.integer "bed_count", default: 0
+    t.integer "bathroom_count", default: 0
   end
 
   create_table "reservations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
