@@ -5,6 +5,7 @@ class Property < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :wishlists , dependent: :destroy
   has_many :wishlisted_users, through: :wishlists, source: :user, dependent: :destroy
+  has_rich_text :description
 
   has_many :reservations, dependent: :destroy
   has_many :reserved_users, through: :reservations, source: :user, dependent: :destroy
